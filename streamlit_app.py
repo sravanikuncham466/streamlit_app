@@ -68,7 +68,6 @@ chart_data = pd.DataFrame(
    {
        "col1": options,
        "col2": Sales
-       "col3": np.random.choice(["A", "B", "C"], 20),
    }
 )
 
