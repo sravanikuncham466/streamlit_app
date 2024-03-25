@@ -37,10 +37,29 @@ option = st.selectbox(
 
 st.write('You selected:', option)
 # st.write("### (2) add a multi-select for Sub_Category *in the selected Category (1)* (https://docs.streamlit.io/library/api-reference/widgets/st.multiselect)")
-options = st.multiselect(
+if option="Furniture":
+    options = st.multiselect(
     'Select Subcategory',
-    ['Accessories','Appliances','Art','Binders','Bookcases','Chairs','Copiers','Envelopes','Fasteners','Furnishings','Labels','Machines','Paper','Phones','Storage','Supplies','Tables']
+    ['Bookcases','Chairs','Furnishings','Tables']
 )
+elif option="Office Supplies":
+    options = st.multiselect(
+    'Select Subcategory',
+    ['Appliances','Art','Binders','Envelopes','Fasteners','Labels','Paper','Storage','Supplies']
+)
+else:
+    options = st.multiselect(
+    'Select Subcategory',
+    ['Accessories','Copiers','Machines','Phones']
+)
+    
+
+    
+
+ # options = st.multiselect(
+  #  'Select Subcategory',
+ #   ['Accessories','Appliances','Art','Binders','Bookcases','Chairs','Copiers','Envelopes','Fasteners','Furnishings','Labels','Machines','Paper','Phones','Storage','Supplies','Tables']
+# )
 
 st.write('You selected:', options)
 # st.write("### (3) show a line chart of sales for the selected items in (2)")
