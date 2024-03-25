@@ -42,7 +42,7 @@ if option=='Furniture':
     'Select Subcategory',
     ['Bookcases','Chairs','Furnishings','Tables']
 )
-elif option="Office Supplies":
+elif option=="Office Supplies":
     options = st.multiselect(
     'Select Subcategory',
     ['Appliances','Art','Binders','Envelopes','Fasteners','Labels','Paper','Storage','Supplies']
