@@ -37,7 +37,7 @@ option = st.selectbox(
 
 st.write('You selected:', option)
 # st.write("### (2) add a multi-select for Sub_Category *in the selected Category (1)* (https://docs.streamlit.io/library/api-reference/widgets/st.multiselect)")
-if option='Furniture':
+if option=='Furniture':
     options = st.multiselect(
     'Select Subcategory',
     ['Bookcases','Chairs','Furnishings','Tables']
