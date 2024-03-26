@@ -36,11 +36,13 @@ option = st.selectbox(
     ('Furniture', 'Office Supplies', 'Technology'))
 
 st.write('You selected:', option)
+li=[]
 # st.write("### (2) add a multi-select for Sub_Category *in the selected Category (1)* (https://docs.streamlit.io/library/api-reference/widgets/st.multiselect)")
 if option=='Furniture':
     options = st.multiselect(
     'Select Subcategory',
     ['Bookcases','Chairs','Furnishings','Tables']
+        li.append(options)
 )
 elif option=="Office Supplies":
     options = st.multiselect(
@@ -62,9 +64,11 @@ else:
 # )
 
 st.write('You selected:', options)
+st.write(li)
 # st.write("### (3) show a line chart of sales for the selected items in (2)")
 #st.line_chart(df, x="options", y="Sales")
-st.line_chart(df.groupby("Sub_Category", as_index=False).sum(), x="options", y="Sales", color="#04f")
+
+st.line_chart(df.groupby("Sub_Category", as_index=False).sum(), x="Sub_Category", y="Sales", color="#04f")
 
 # st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
 # st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
