@@ -31,29 +31,70 @@ st.line_chart(sales_by_month, y="Sales")
 
 # st.write("## Your additions")
 # st.write("### (1) add a drop down for Category (https://docs.streamlit.io/library/api-reference/widgets/st.selectbox)")
-option = st.selectbox(
-    'select category',
-    ('Furniture', 'Office Supplies', 'Technology'))
 
-st.write('You selected:', option)
-li=[]
-# st.write("### (2) add a multi-select for Sub_Category *in the selected Category (1)* (https://docs.streamlit.io/library/api-reference/widgets/st.multiselect)")
-if option=='Furniture':
-    options = st.multiselect(
-    'Select Subcategory',
-    ['Bookcases','Chairs','Furnishings','Tables']
-       
+option = st.selectbox(
+    'Select Category',
+    df['Category'].unique()
 )
-elif option=="Office Supplies":
-    options = st.multiselect(
+filtered_df = df[df['Category'] == option]
+options = st.multiselect(
     'Select Subcategory',
-    ['Appliances','Art','Binders','Envelopes','Fasteners','Labels','Paper','Storage','Supplies']
+    filtered_df['Sub_Category'].unique()
 )
+filtered_df = filtered_df[filtered_df['Sub_Category'].isin(options)]
+if not filtered_df.empty:
+    chart = alt.Chart(filtered_df).mark_line().encode(
+        x='Order_Date:T',
+        y='Sales:Q',
+        color='Sub_Category:N',
+        tooltip=['Sub_Category', 'Sales']
+    ).properties(
+        width=800,
+        height=400,
+        title='Sales for Selected Items in Selected Sub-Categories'
+    )
+    st.altair_chart(chart)
 else:
-    options = st.multiselect(
-    'Select Subcategory',
-    ['Accessories','Copiers','Machines','Phones']
-)
+    st.write("No data available for the selected subcategories.")
+if not filtered_df.empty:
+    total_sales = filtered_df['Sales'].sum()
+    total_profit = filtered_df['Profit'].sum()
+    overall_avg_profit_margin = np.mean(filtered_df['Profit'] / filtered_df['Sales']) * 100
+    st.write("### Metrics")
+    st.metric("Total Sales", f"${total_sales}")
+    st.metric("Total Profit", f"${total_profit}")
+    st.metric("Overall Profit Margin (%)", f"{overall_avg_profit_margin:.2f}%")
+    
+    # Calculate overall average profit margin across all products
+    all_avg_profit_margin = np.mean(df['Profit'] / df['Sales']) * 100
+    st.metric("Overall Avg. Profit Margin (%)", f"{all_avg_profit_margin:.2f}%", delta=all_avg_profit_margin - overall_avg_profit_margin)
+
+
+
+
+ #option = st.selectbox(
+ #   'select category',
+  #  ('Furniture', 'Office Supplies', 'Technology'))
+
+#st.write('You selected:', option)
+#li=[]
+# st.write("### (2) add a multi-select for Sub_Category *in the selected Category (1)* (https://docs.streamlit.io/library/api-reference/widgets/st.multiselect)")
+#if option=='Furniture':
+ #   options = st.multiselect(
+ #   'Select Subcategory',
+ #   ['Bookcases','Chairs','Furnishings','Tables']
+       
+#)
+#elif option=="Office Supplies":
+ #   options = st.multiselect(
+  #  'Select Subcategory',
+   # ['Appliances','Art','Binders','Envelopes','Fasteners','Labels','Paper','Storage','Supplies']
+#)
+#else:
+ #   options = st.multiselect(
+ #   'Select Subcategory',
+ #   ['Accessories','Copiers','Machines','Phones']
+#)
     
 
     
