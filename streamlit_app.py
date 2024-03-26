@@ -42,7 +42,7 @@ if option=='Furniture':
     options = st.multiselect(
     'Select Subcategory',
     ['Bookcases','Chairs','Furnishings','Tables']
-        li.append(options)
+       
 )
 elif option=="Office Supplies":
     options = st.multiselect(
@@ -64,7 +64,7 @@ else:
 # )
 
 st.write('You selected:', options)
-st.write(li)
+
 # st.write("### (3) show a line chart of sales for the selected items in (2)")
 #st.line_chart(df, x="options", y="Sales")
 
