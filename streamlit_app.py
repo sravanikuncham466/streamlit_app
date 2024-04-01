@@ -65,23 +65,35 @@ else:
  #   ['Accessories','Appliances','Art','Binders','Bookcases','Chairs','Copiers','Envelopes','Fasteners','Furnishings','Labels','Machines','Paper','Phones','Storage','Supplies','Tables']
 # )
 
-st.write('You selected:', options)
+#st.write('You selected:', options)
 
 # st.write("### (3) show a line chart of sales for the selected items in (2)")
 #st.line_chart(df, x="options", y="Sales")
 
 # Displaying a dropdown for category selection
-category = st.selectbox("Select Category", list(sub_categories.keys()))
+#category = st.selectbox("Select Category", list(sub_categories.keys()))
 
 # Retrieve sub-categories based on the selected category
-selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories[category])
+#selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories[category])
 
 # Filter the DataFrame based on the selected sub-categories
-filtered_df = df[selected_sub_categories]
+#filtered_df = df[selected_sub_categories]
 
 # Display line chart of sales for selected items
-st.write("### (3) Line Chart of Sales for Selected Items")
-st.line_chart(filtered_df)
+##st.write("### (3) Line Chart of Sales for Selected Items")
+#st.line_chart(filtered_df)
+# (2) Add a multi-select for Sub_Category in the selected Category (1)
+sub_categories = df[df['Category'] == category]['Sub_Category'].unique()
+selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories)
+# Initialize variables to avoid NameError
+total_sales = 0
+total_profit = 0
+overall_profit_margin = 0
+# (3) Show a line chart of sales for the selected items in (2)
+if selected_sub_categories:
+    mask = df['Sub_Category'].isin(selected_sub_categories)
+    sales_by_month = df[mask].resample('M', on='Order_Date')['Sales'].sum()
+    st.line_chart(sales_by_month)
 
 st.line_chart(df.groupby("Sub_Category", as_index=False).sum(), x="Sub_Category", y="Sales", color="#04f")
 
