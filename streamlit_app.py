@@ -83,8 +83,8 @@ else:
 ##st.write("### (3) Line Chart of Sales for Selected Items")
 #st.line_chart(filtered_df)
 
-category = df['Category'].unique()
-selected_category=st.multiselect("select categories",category)
+# (1) Add a drop down for Category
+category = st.selectbox("Select a Category", df['Category'].unique())
 # (2) Add a multi-select for Sub_Category in the selected Category (1)
 sub_categories = df[df['Category'] == category]['Sub_Category'].unique()
 selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories)
