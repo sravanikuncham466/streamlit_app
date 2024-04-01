@@ -69,6 +69,19 @@ st.write('You selected:', options)
 # st.write("### (3) show a line chart of sales for the selected items in (2)")
 #st.line_chart(df, x="options", y="Sales")
 
+# Displaying a dropdown for category selection
+category = st.selectbox("Select Category", list(sub_categories.keys()))
+
+# Retrieve sub-categories based on the selected category
+selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories[category])
+
+# Filter the DataFrame based on the selected sub-categories
+filtered_df = df[selected_sub_categories]
+
+# Display line chart of sales for selected items
+st.write("### (3) Line Chart of Sales for Selected Items")
+st.line_chart(filtered_df)
+
 st.line_chart(df.groupby("Sub_Category", as_index=False).sum(), x="Sub_Category", y="Sales", color="#04f")
 
 # st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
