@@ -68,7 +68,7 @@ else:
 ##st.write('You selected:', options)
 
 # st.write("### (3) show a line chart of sales for the selected items in (2)")
-st.line_chart(df, x="options", y="Sales")
+#st.line_chart(df, x="options", y="Sales")
 
 # Displaying a dropdown for category selection
 category = st.selectbox("Select Category", list(sub_categories.keys()))
