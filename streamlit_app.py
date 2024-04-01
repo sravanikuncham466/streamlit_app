@@ -84,6 +84,7 @@ else:
 #st.line_chart(filtered_df)
 
 category = df['Category']
+selected_category=st.multiselect("select categories",category)
 # (2) Add a multi-select for Sub_Category in the selected Category (1)
 sub_categories = df[df['Category'] == category]['Sub_Category'].unique()
 selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories)
