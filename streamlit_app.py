@@ -71,7 +71,7 @@ else:
 #st.line_chart(df, x="options", y="Sales")
 
 # Displaying a dropdown for category selection
-category = st.selectbox("Select Category", list(sub_categories.keys()))
+#category = st.selectbox("Select Category", list(sub_categories.keys()))
 
 # Retrieve sub-categories based on the selected category
 #selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories[category])
