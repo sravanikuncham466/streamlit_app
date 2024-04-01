@@ -65,13 +65,13 @@ else:
  #   ['Accessories','Appliances','Art','Binders','Bookcases','Chairs','Copiers','Envelopes','Fasteners','Furnishings','Labels','Machines','Paper','Phones','Storage','Supplies','Tables']
 # )
 
-#st.write('You selected:', options)
+##st.write('You selected:', options)
 
 # st.write("### (3) show a line chart of sales for the selected items in (2)")
-#st.line_chart(df, x="options", y="Sales")
+st.line_chart(df, x="options", y="Sales")
 
 # Displaying a dropdown for category selection
-#category = st.selectbox("Select Category", list(sub_categories.keys()))
+category = st.selectbox("Select Category", list(sub_categories.keys()))
 
 # Retrieve sub-categories based on the selected category
 #selected_sub_categories = st.multiselect("Select Sub-Category", sub_categories[category])
