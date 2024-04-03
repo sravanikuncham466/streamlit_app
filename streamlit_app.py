@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import altair as alt
 import math
 
@@ -50,8 +50,8 @@ total_sales= filtered_df['Sales'].sum()
 total_profit = filtered_df ['Profit'].sum()
 overall_profit_margin = (total_profit/total_sales)*100
 #metrics
-st.metric(label="Total sales", value=total_sales,delta=total_sales,delta_color="normal")
-st.metric(label="Total Profit",value=total_profit, delta=total_profit,delta_color="normal")
+st.metric(label="Total sales", value=total_sales)
+st.metric(label="Total Profit",value=total_profit)
 st.metric(label="overall profit margin",value=overall_profit_margin,delta = overall_profit_margin, delta_color="normal")
 
 # st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
