@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import altair as alt
 import math
 
@@ -23,7 +23,7 @@ st.bar_chart(df.groupby("Category", as_index=False).sum(), x="Category", y="Sale
 df["Order_Date"] = pd.to_datetime(df["Order_Date"])
 df.set_index('Order_Date', inplace=True)
 # Here the Grouper is using our newly set index to group by Month ('M')
-sales_by_month = df.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
+sales_by_month = df.filter(items=['Sales']).groupby(pd.Grouper(freq='ME')).sum()
 
 st.dataframe(sales_by_month)
 
@@ -46,4 +46,12 @@ if not filtered_df.empty:
     st.line_chart(salesby_date)
 
 # st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
+total_sales= filtered_df['Sales'].sum()
+total_profit = filtered_df ['Profit'].sum()
+overall_profit_margin = (total_profit/total_sales)*100
+#metrics
+st.metric(label="Total sales", value=total_sales,delta=total_sales,delta_color="normal")
+st.metric(label="Total Profit",value=total_profit, delta=total_profit,delta_color="normal")
+st.metric(label="overall profit margin",value=overall_profit_margin,delta = overall_profit_margin, delta_color="normal")
+
 # st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
